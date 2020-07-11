@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="C:\Users\dvess\workspace-spring-tool-suite-4-4.6.2.RELEASE\production-scheduler\src\main\resources\static\sort.css">
+    
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+         <img src="C:\Users\dvess\workspace-spring-tool-suite-4-4.6.2.RELEASE\production-scheduler\src\main\resources\static\pumpworks-logo-300x108-300x108.png" width="100px" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/projects/projects}">Parts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/machines}">Machines</a>
+      </li>
+    </ul>
+  </div>
+      </nav>
+
+      <br>
+
+      <!--<div th:object="${machine}">-->
+		<div th:object="${machine}">
+      <div th:each="machine : ${machines}">
+      <h2 th:text="${machine.name}"></h2> 
+	  <a th:href="@{/projects/addMachine(id=${machine.id})}"
+						class="btn btn-info btn-sm">
+						Add Project to this machine
+						</a>  
+      
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">PRIORITY</th>
+            <th scope="col">PART NAME</th>
+            <th scope="col">OPERATION</th>
+            <th scope="col">DESCRIPTION</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="sortable">
+          <tr th:each="project : ${projects}">
+            <td th:text="${project.priorityNum}"/>
+            <td th:text="${project.name}"/>
+            <td th:text="${project.operationNum}"/>
+            <td th:text="${project.description}"/>
+            <td>
+              <a th:href="@{/projects/update(id=${project.projectId})}"
+                class="btn btn-info btn-sm">
+                Update
+              </a>
+
+              <a th:href="@{/projects/delete(id=${project.projectId})}"
+                class="btn btn-danger btn-sm"
+                onClick="if (!(confirm('Are you sure you want to delete this part?'))) return false">
+                Delete
+             </a>
+             </td>
+             </tr>
+        </tbody>
+      </table>
+     </div>
+      </div>
+              
+ 
+      
+      <br> <br>
+       <a th:href="@{/machines/new}"
+                class="btn btn-info btn-sm">
+                ADD A NEW MACHINE TO YOUR SHOP
+              </a>
+              
+
+<!--JQuery CDN-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+     <script src="C:\Users\dvess\workspace-spring-tool-suite-4-4.6.2.RELEASE\production-scheduler\src\main\resources\static\sort.js"></script>
+
+</body>
+</html>

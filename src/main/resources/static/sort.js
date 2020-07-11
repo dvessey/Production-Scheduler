@@ -1,0 +1,5 @@
+$(".sortable").sortable({
+    connectWith: ".sortable"
+});
+
+
