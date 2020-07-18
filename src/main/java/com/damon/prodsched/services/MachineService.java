@@ -32,6 +32,10 @@ public class MachineService{
 		return machRepo.findAll();
 	}
 	
+	public Iterable<Machine> findAllById(long id){
+		return machRepo.findAllById(id);
+	}
+	
 //	public Machine findByMachineId(long id) {
 //		return machRepo.findByMachineId(id);
 //	}
@@ -47,12 +51,12 @@ public class MachineService{
 		return machine;
 	}
 	
-	public Machine addProjectToMachine(Machine machine, Project project) {
-		machine.getProjects().add(project);
-		project.setMachine(machine);
-		//proRepo.save(project);
-		machRepo.save(machine);
-		return machine;
-	}
+//	public Machine addProjectToMachine(Machine machine, Project project) {
+//		machine.getProjects().add(project);
+//		project.setMachine(machine);
+//		//proRepo.save(project);
+//		//machRepo.save(machine);
+//		return machine;
+//	}
 
 }

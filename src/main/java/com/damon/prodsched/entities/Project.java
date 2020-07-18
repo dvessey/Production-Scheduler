@@ -16,6 +16,8 @@ import javax.persistence.Table;
 
 import org.springframework.data.jpa.repository.Query;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="project")
@@ -30,10 +32,9 @@ public class Project {
 	@Column(name="operationnum")
 	private String operationNum;
 	private String description;
-	
 
-	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
-	@JoinColumn(name="machine_id", referencedColumnName="id")
+	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch=FetchType.LAZY)
+	@JoinColumn(name="machine_id", referencedColumnName="id", nullable = false, updatable = false)
 	private Machine machine;
 
 	
@@ -101,6 +102,7 @@ public class Project {
 	public void setMachine(Machine machine) {
 		this.machine = machine;
 	}
+
 	
 	
 }

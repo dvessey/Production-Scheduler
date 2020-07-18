@@ -18,4 +18,6 @@ public interface MachineRepository extends CrudRepository<Machine, Long>{
 	
 	@Override
 	public List<Machine> findAll();
+	
+	public Iterable<Machine> findAllById(long id);
 }

@@ -12,6 +12,7 @@ import com.damon.prodsched.entities.Project;
 public interface ProjectRepository extends CrudRepository<Project, Long>{
 	
 	//@Query(nativeQuery=true, value="SELECT project.machine_id FROM project INNER JOIN machine on id = project.machine_id")
+	//@Query(nativeQuery=true, value="SELECT project.name FROM project LEFT JOIN machine on project.machine_id = machine.id")
 	@Override
 	public List<Project> findAll();
 	

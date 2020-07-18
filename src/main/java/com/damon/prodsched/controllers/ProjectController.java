@@ -31,32 +31,47 @@ public class ProjectController {
 	@Autowired
 	MachineService machService;
 	
+	//ArrayList<Project> projects = new ArrayList<Project>();
 	
-	@GetMapping("/addMachine")
-	public String addMachine(@RequestParam("id") long id, Model model) {
+	@GetMapping("/addProject")
+	public String createProject(Model model) {
 		Project aProject = new Project();
-		Machine aMachine = machService.findById(id);
-		
-		Machine theMachine = aMachine;		
-		theMachine = machService.addProjectToMachine(aMachine, aProject);
-		System.out.println("aProject machine's ID: " + aProject.getMachine().getId()); //THIS RETURNS THE CORRECT ID
-
-		model.addAttribute("machine", theMachine);
+		List<Machine> machines = machService.findAll();
 		model.addAttribute("project", aProject);
+		model.addAttribute("machines", machines);
 		return "projects/new-projects";
 	}
 	
-	@PostMapping("/save")
-	public String createProject(Project project, Model model) {
-		proService.save(project);		
+
+	@PostMapping("/saveProject")
+	public String saveProject(Project project, @RequestParam("machine") List<Long> id,  Model model) {
+		ArrayList<Project> projects = new ArrayList<Project>();
+		projects.add(project);
+		
+		long theMachineId = id.get(0);
+		Machine theMachine = machService.findById(theMachineId);
+		
+		project.setMachine(theMachine);
+		proService.save(project);
+		theMachine.setProjects(projects);
+		machService.save(theMachine);
 		return "redirect:/";
 	}
+	
 	
 	@GetMapping("/update")
 	public String displayProjectUpdateForm(@RequestParam("id") long id, Model model) {
 		//Project aProject = proService.findByProjectId(id);
 		Project aProject = proService.findById(id);
+		List<Machine> machines = machService.findAll();
+		
+//		long oldMachineId = aProject.getMachine().getId();
+//		Machine oldMachine = machService.findById(oldMachineId);
+//		oldMachine.getProjects().remove(aProject);
+//		machService.save(oldMachine);
+		
 		model.addAttribute("project", aProject);
+		model.addAttribute("machines", machines);
 		return "projects/new-projects";
 	}
 		

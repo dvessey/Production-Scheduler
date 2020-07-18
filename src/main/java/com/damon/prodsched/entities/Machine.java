@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="machine")
@@ -24,6 +27,8 @@ public class Machine {
 	private String name;
 	
 	@OneToMany(mappedBy="machine", cascade =  {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+	//@OneToMany(mappedBy="machine", cascade = CascadeType.ALL)
+	//@JsonIgnore
 	private List<Project> projectList;
 	
 	public Machine() {
@@ -60,11 +65,6 @@ public class Machine {
 	public void setProjects(ArrayList<Project> projects) {
 		this.projectList = projects;
 	}
-
-	
-	
-	
-	
-	
+		
 
 }
