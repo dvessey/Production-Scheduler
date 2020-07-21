@@ -1,21 +1,14 @@
 package com.damon.prodsched.controllers;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.damon.prodsched.entities.Machine;
 import com.damon.prodsched.entities.Project;
 import com.damon.prodsched.services.MachineService;
@@ -31,7 +24,6 @@ public class ProjectController {
 	@Autowired
 	MachineService machService;
 	
-	//ArrayList<Project> projects = new ArrayList<Project>();
 	
 	@GetMapping("/addProject")
 	public String createProject(Model model) {
@@ -61,15 +53,8 @@ public class ProjectController {
 	
 	@GetMapping("/update")
 	public String displayProjectUpdateForm(@RequestParam("id") long id, Model model) {
-		//Project aProject = proService.findByProjectId(id);
 		Project aProject = proService.findById(id);
 		List<Machine> machines = machService.findAll();
-		
-//		long oldMachineId = aProject.getMachine().getId();
-//		Machine oldMachine = machService.findById(oldMachineId);
-//		oldMachine.getProjects().remove(aProject);
-//		machService.save(oldMachine);
-		
 		model.addAttribute("project", aProject);
 		model.addAttribute("machines", machines);
 		return "projects/new-projects";
@@ -77,7 +62,6 @@ public class ProjectController {
 		
 	@GetMapping("/delete")
 	public String deleteProject(@RequestParam("id") long id, Model model) {
-		//Project aProject = proService.findByProjectId(id);
 		Project aProject = proService.findById(id);
 		proService.delete(aProject);
 		return "redirect:/";

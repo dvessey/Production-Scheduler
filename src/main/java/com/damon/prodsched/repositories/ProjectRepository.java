@@ -1,18 +1,11 @@
 package com.damon.prodsched.repositories;
 
 import java.util.List;
-
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
-
 import com.damon.prodsched.entities.Project;
 
 public interface ProjectRepository extends CrudRepository<Project, Long>{
 	
-	//@Query(nativeQuery=true, value="SELECT project.machine_id FROM project INNER JOIN machine on id = project.machine_id")
-	//@Query(nativeQuery=true, value="SELECT project.name FROM project LEFT JOIN machine on project.machine_id = machine.id")
 	@Override
 	public List<Project> findAll();
 	

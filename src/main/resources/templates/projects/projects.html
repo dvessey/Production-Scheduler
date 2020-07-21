@@ -28,9 +28,6 @@
         <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" th:href="@{/projects/projects}">Parts</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" th:href="@{/machines}">Machines</a>
       </li>
     </ul>
@@ -39,18 +36,14 @@
 
       <br>
 
-      <!--<div th:object="${machine}">-->
+		 <a th:href="@{/projects/addProject}"
+						class="btn btn-info btn-sm">
+						ADD A NEW PART TO A MACHINE
+						</a> 
+
 		<div th:object="${machine}">
       <div th:each="machine : ${machines}">
       <h2 th:text="${machine.name}"></h2> 
-	  <!--<a th:href="@{/projects/addMachine(id=${machine.id})}"
-						class="btn btn-info btn-sm">
-						Add Project to this machine
-						</a>  -->
-	 <a th:href="@{/projects/addProject}"
-						class="btn btn-info btn-sm">
-						Add Project to this machine
-						</a> 
       
       <table class="table table-striped">
         <thead class="thead-dark">
@@ -59,7 +52,7 @@
             <th scope="col">PART NAME</th>
             <th scope="col">OPERATION</th>
             <th scope="col">DESCRIPTION</th>
-            <th scope="col">Action</th>
+            <th scope="col">ACTION</th>
           </tr>
         </thead>
         <tbody class="sortable">

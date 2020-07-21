@@ -31,9 +31,6 @@
         <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" th:href="@{/projects/projects}">Parts</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" th:href="@{/machines}">Machines</a>
       </li>
     </ul>
@@ -42,10 +39,10 @@
 
       <br>
 
-	<!--<h2 th:text="|Add project to machine: ${machine.name}|"></h2>
-	<p th:text="|Machine's id: ${machine.id}|"></p> -->
+	
       <div class="container" id="projectForm">
       <form th:action="@{/projects/saveProject}" th:object="${project}" method="POST">
+		<input type="hidden" th:field="${project.projectId}"/>
 
         <input type="text" placeholder="Part Name" th:field="${project.name}">
 
@@ -62,7 +59,7 @@
 		</select>
 
         
-    <button id ="getMachineId" class="btn btn-info col-2 add-row" type="submit">Create part</button> <!-- add-row is in dynamic-table.js -->
+    <button id ="getMachineId" class="btn btn-info col-2" type="submit">Create part</button>
    </form>
    </div>
       

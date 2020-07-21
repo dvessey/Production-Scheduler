@@ -1,13 +1,11 @@
 package com.damon.prodsched.services;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.damon.prodsched.entities.Machine;
-import com.damon.prodsched.entities.Project;
 import com.damon.prodsched.repositories.MachineRepository;
 import com.damon.prodsched.repositories.ProjectRepository;
 
@@ -36,9 +34,6 @@ public class MachineService{
 		return machRepo.findAllById(id);
 	}
 	
-//	public Machine findByMachineId(long id) {
-//		return machRepo.findByMachineId(id);
-//	}
 	
 	public void delete(Machine aMachine) {
 		machRepo.delete(aMachine);
@@ -51,12 +46,5 @@ public class MachineService{
 		return machine;
 	}
 	
-//	public Machine addProjectToMachine(Machine machine, Project project) {
-//		machine.getProjects().add(project);
-//		project.setMachine(machine);
-//		//proRepo.save(project);
-//		//machRepo.save(machine);
-//		return machine;
-//	}
 
 }
