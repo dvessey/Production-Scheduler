@@ -1,5 +1,6 @@
 package com.damon.prodsched.controllers;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,15 +37,22 @@ public class ProjectController {
 	
 
 	@PostMapping("/saveProject")
-	public String saveProject(Project project, @RequestParam("machine") List<Long> id,  Model model) {
+	public String saveProject(Project project, @RequestParam("machine") List<Long> id, Model model) {
+	
 		ArrayList<Project> projects = new ArrayList<Project>();
 		projects.add(project);
 		
 		long theMachineId = id.get(0);
 		Machine theMachine = machService.findById(theMachineId);
 		
+		LocalDateTime theStartDate = project.getStartDate();
+		long hoursToComplete = project.getHoursToComplete();
+		LocalDateTime endDate = theStartDate.plusHours(hoursToComplete);
+		
+		project.setEndDate(endDate);
 		project.setMachine(theMachine);
 		proService.save(project);
+		
 		theMachine.setProjects(projects);
 		machService.save(theMachine);
 		return "redirect:/";

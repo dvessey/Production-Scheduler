@@ -43,6 +43,7 @@
 
 		<div th:object="${machine}">
       <div th:each="machine : ${machines}">
+		<br>
       <h2 th:text="${machine.name}"></h2> 
       
       <table class="table table-striped">
@@ -52,6 +53,9 @@
             <th scope="col">PART NAME</th>
             <th scope="col">OPERATION</th>
             <th scope="col">DESCRIPTION</th>
+			<th scope="col">START DATE</th>
+			<th scope="col">ESTIMATED HOURS TO COMPLETE</th>
+			<th scope="col">END DATE</th>
             <th scope="col">ACTION</th>
           </tr>
         </thead>
@@ -61,6 +65,9 @@
             <td th:text="${project.name}"/>
             <td th:text="${project.operationNum}"/>
             <td th:text="${project.description}"/>
+			<td th:text="${#temporals.format(project.startDate, 'MM-dd-yyyy HH:mm')}"/>
+			<td th:text="${project.hoursToComplete}"/>
+			<td th:text="${#temporals.format(project.endDate, 'MM-dd-yyyy HH:mm')}"/>
             <td>
               <a th:href="@{/projects/update(id=${project.projectId})}"
                 class="btn btn-info btn-sm">

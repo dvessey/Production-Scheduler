@@ -12,7 +12,12 @@
     <link rel="stylesheet" type="text/css" href="C:\Users\Damon\Documents\workspace-spring-tool-suite-4-4.6.2.RELEASE\production-scheduler\src\main\resources\static\sort.css">
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  
+	<!-- Tempus Dominus DatePciker CDN-->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+  	<script src="https://kit.fontawesome.com/294115480b.js" crossorigin="anonymous"></script>
     
    
 </head>
@@ -50,16 +55,56 @@
          <input type="text" placeholder="Operation" th:field="${project.operationNum}">
 
 		 <textarea placeholder="Enter Description for part (OPTIONAL)" th:field="${project.description}"></textarea>
+	<br><br>
+		
+		
+               
+		<br><br>
+		Estimated Hours To Complete:
+		<input type="number"  th:field="${project.hoursToComplete}">
     
+		<br><br>
+		Select Machine:
 		<select th:field="*{machine}">
 			<option th:each = "machine : ${machines}"
 					th:value = "${machine.id}"
 					th:text = "${machine.name}">
 			</option>
 		</select>
+		<br><br>
+		
+		 <div class="form-group">
+                    <label for="date">Part Start Date And Time:</label>
+                    <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                        <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"
+                               th:field="${project.startDate}" id="date" placeholder="Start Date And Time"/>
+                        <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+<script>
+    $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
+        icons: {
+            time: 'far fa-clock',
+            date: 'far fa-calendar',
+            up: 'fas fa-arrow-up',
+            down: 'fas fa-arrow-down',
+            previous: 'fas fa-chevron-left',
+            next: 'fas fa-chevron-right',
+            today: 'far fa-calendar-check-o',
+            clear: 'far fa-trash',
+            close: 'far fa-times'
+        } });
+
+   $('#datetimepicker1').datetimepicker({
+        format: 'MM-DD-YYYY HH:mm'
+    });
+</script>
 
         
-    <button id ="getMachineId" class="btn btn-info col-2" type="submit">Create part</button>
+    <button id ="getMachineId" class="btn btn-info col-2" type="submit">Create Part</button>
    </form>
    </div>
       
