@@ -49,7 +49,6 @@
       <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">PRIORITY</th>
             <th scope="col">PART NAME</th>
             <th scope="col">OPERATION</th>
             <th scope="col">DESCRIPTION</th>
@@ -61,7 +60,6 @@
         </thead>
         <tbody class="sortable">
           <tr th:each="project : ${machine.projects}">
-            <td th:text="${project.priorityNum}"/>
             <td th:text="${project.name}"/>
             <td th:text="${project.operationNum}"/>
             <td th:text="${project.description}"/>

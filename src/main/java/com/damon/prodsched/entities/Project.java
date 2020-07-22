@@ -11,8 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import org.springframework.format.annotation.DateTimeFormat;
+
 
 
 @Entity
@@ -22,8 +22,6 @@ public class Project {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY, generator="project_seq")
 	private long projectId;
-	@Column(name="prioritynum")
-	private int priorityNum;
 	private String name;
 	@Column(name="operationnum")
 	private String operationNum;

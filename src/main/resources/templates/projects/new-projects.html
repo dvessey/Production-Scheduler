@@ -80,6 +80,9 @@
                                th:field="${project.startDate}" id="date" placeholder="Start Date And Time"/>
                         <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
+							<span style="color:red" th:if="${#fields.hasErrors('endDate')}"
+								th:errors="${project.endDate}">
+								</span>
                         </div>
                     </div>
                 </div>

@@ -38,7 +38,6 @@ public class ProjectController {
 
 	@PostMapping("/saveProject")
 	public String saveProject(Project project, @RequestParam("machine") List<Long> id, Model model) {
-	
 		ArrayList<Project> projects = new ArrayList<Project>();
 		projects.add(project);
 		
@@ -52,7 +51,7 @@ public class ProjectController {
 		project.setEndDate(endDate);
 		project.setMachine(theMachine);
 		proService.save(project);
-		
+				
 		theMachine.setProjects(projects);
 		machService.save(theMachine);
 		return "redirect:/";
