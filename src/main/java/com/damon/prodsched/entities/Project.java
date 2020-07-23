@@ -46,9 +46,8 @@ public class Project {
 	}
 
 
-	public Project (int priorityNum, String name, String operationNum, String description, LocalDateTime startDate, long hoursToComplete, LocalDateTime endDate) {
+	public Project (String name, String operationNum, String description, LocalDateTime startDate, long hoursToComplete, LocalDateTime endDate) {
 		super();
-		this.priorityNum = priorityNum;
 		this.name = name;
 		this.operationNum = operationNum;
 		this.description = description;
@@ -67,13 +66,6 @@ public class Project {
 		this.name = name;
 	}
 
-	public long getPriorityNum() {
-		return priorityNum;
-	}
-
-	public void setPriorityNum(int priorityNum) {
-		this.priorityNum = priorityNum;
-	}
 
 	public String getOperationNum() {
 		return operationNum;
