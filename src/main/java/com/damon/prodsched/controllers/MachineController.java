@@ -25,7 +25,7 @@ public class MachineController {
 	
 	@GetMapping
 	public String displayMachines(Model model) {
-		List<Machine> machines = machService.findAll();
+		List<Machine> machines = machService.findAllByOrderByIdAsc();
 		model.addAttribute("machines", machines);
 		return "machines/list-machines";
 	}

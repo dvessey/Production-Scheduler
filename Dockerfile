@@ -8,7 +8,9 @@ ENV dbuser=dvess
 ENV dbpass=BlackFlag90!
 ENV jdbcurl=jdbc:postgresql://prodscheddb.cuwlvffd8dag.us-east-2.rds.amazonaws.com:5432/prodscheddb
 
-WORKDIR /usr/local/bin/
+WORKDIR /usr/local/bin/production-scheduler
+
+ADD . ./src/main/resources/static
 
 ADD target/prodschedapp.jar .
 

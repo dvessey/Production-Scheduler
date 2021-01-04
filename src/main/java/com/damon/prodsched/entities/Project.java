@@ -1,6 +1,8 @@
 package com.damon.prodsched.entities;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import org.springframework.format.annotation.DateTimeFormat;
 
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -34,6 +36,9 @@ public class Project {
 	@Column(name="enddate")
 	@DateTimeFormat(pattern="MM-dd-yyyy HH:mm")
 	private LocalDateTime endDate;
+	@Column(name="lastupdated")
+	private OffsetDateTime lastUpdated;
+
 
 	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, fetch=FetchType.LAZY)
 	@JoinColumn(name="machine_id", referencedColumnName="id", nullable = false)
@@ -42,11 +47,11 @@ public class Project {
 	
 
 	public Project() {
-		
+		super();
 	}
 
 
-	public Project (String name, String operationNum, String description, LocalDateTime startDate, long hoursToComplete, LocalDateTime endDate) {
+	public Project (String name, String operationNum, String description, LocalDateTime startDate, long hoursToComplete, LocalDateTime endDate, OffsetDateTime lastUpdated) {
 		super();
 		this.name = name;
 		this.operationNum = operationNum;
@@ -54,8 +59,8 @@ public class Project {
 		this.startDate = startDate;
 		this.hoursToComplete = hoursToComplete;
 		this.endDate = endDate;
-	}
-	
+		this.lastUpdated = lastUpdated;
+	}	
 	
 
 	public String getName() {
@@ -118,6 +123,17 @@ public class Project {
 	public void setEndDate(LocalDateTime endDate) {
 		this.endDate = endDate;
 	}
+	
+
+
+	public OffsetDateTime getLastUpdated() {
+		return lastUpdated;
+	}
+
+
+	public void setLastUpdated(OffsetDateTime lastUpdated) {
+		this.lastUpdated = lastUpdated;
+	}
 
 
 	public Machine getMachine() {
@@ -128,6 +144,5 @@ public class Project {
 		this.machine = machine;
 	}
 
-	
 	
 }

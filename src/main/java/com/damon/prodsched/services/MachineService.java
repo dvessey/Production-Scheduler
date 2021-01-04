@@ -26,8 +26,8 @@ public class MachineService{
 		return machRepo.findAll();
 	}
 
-	public List<Machine> findAll(){
-		return machRepo.findAll();
+	public List<Machine> findAllByOrderByIdAsc(){
+		return machRepo.findAllByOrderByIdAsc();
 	}
 	
 	public Iterable<Machine> findAllById(long id){
